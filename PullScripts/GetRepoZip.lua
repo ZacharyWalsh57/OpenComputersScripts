@@ -12,12 +12,21 @@
 --  |    and the rest of the scripts are derived from the repo.      |
 --  +----------------------------------------------------------------+
 
--- HTTP Caller for the Lua language
-local internet = require("internet")
-
--- Commonly Used Vars
+-- #region Configuration and Imports
+-- Git Configuration
 local UserName = "ZacharyWalsh57"
-local RepoName = 
+local RepoName = "OpenComputersScripts"
+local RepoURL = "https://github.com/" .. UserName .. "/" .. RepoName .. "/archive/main.zip"
 
--- Setup base repo URL
--- URL: https://github.com/<user>/<repo>/archive/<branch>.zip
+-- Output File locations for downloads
+local DownloadDir = "/home/OCScripting/"
+local OutputZip = DownloadDir .. "OCScriptingMain.zip"
+-- #endregion
+
+-- Download the file now (Testing with Tar package)
+print (UserName .. " -- " .. RepoName)
+print (RepoURL)
+print ("Downloading repo now...")
+
+wget RepoURL OutputZip
+print ("Downloaded OK!")
