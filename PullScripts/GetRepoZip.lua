@@ -2,7 +2,7 @@
 --  |          LuaOpenComputers_Setup.lua - Version 0.0.1A           |
 --  |        Pull down all scripts from the OpenComputers Repo       |
 --  |                                                                |
---  |                  Zack Walsh - 00/00/0000                       |
+--  |                  Zack Walsh - 03/10/2021                       |
 --  |================================================================+
 --  |                        Change Log                              |
 --  | 03/10/2021 - 0.0.1A                                            |
@@ -12,21 +12,18 @@
 --  |    and the rest of the scripts are derived from the repo.      |
 --  +----------------------------------------------------------------+
 
--- #region Configuration and Imports
+-- #region Configuration
 -- Git Configuration
 local UserName = "ZacharyWalsh57"
 local RepoName = "OpenComputersScripts"
-local RepoURL = "https://github.com/" .. UserName .. "/" .. RepoName .. "/archive/main.zip"
+local RepoBranch = "main"
+local RepoURL = "https://github.com/"..UserName.."/"..RepoName.."/archive/"..RepoBranch..".tar.gz"
 
 -- Output File locations for downloads
 local DownloadDir = "/home/OCScripting/"
-local OutputZip = DownloadDir .. "OCScriptingMain.zip"
+local OutputZip = DownloadDir.."OCScripting-"..RepoBranch..".tar.gz"
 -- #endregion
 
--- Download the file now (Testing with Tar package)
-print (UserName .. " -- " .. RepoName)
-print (RepoURL)
-print ("Downloading repo now...")
-
-wget RepoURL OutputZip
-print ("Downloaded OK!")
+-- Download the repo now.
+require("/bin/wget")
+wget("-f".." "..RepoURL.." "..OutputZip)
