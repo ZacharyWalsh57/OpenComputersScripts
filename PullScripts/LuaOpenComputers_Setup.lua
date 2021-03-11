@@ -1,5 +1,5 @@
 --  +----------------------------------------------------------------+
---  |          LuaOpenComputers_Setup.lua - Version 0.0.1A           |
+--  |          LuaOpenComputers_Setup.lua - Version 0.0.2A           |
 --  |        Pull down all scripts from the OpenComputers Repo       |
 --  |                                                                |
 --  |                  Zack Walsh - 03/10/2021                       |
@@ -10,6 +10,11 @@
 --  |    be able to pull down a whole repo/tar.gz of the script I    |
 --  |    generate over time. Once that's done, this gets deployed    |
 --  |    and the rest of the scripts are derived from the repo.      |
+--  |                                                                |
+--  | 03/11/2021 - 0.0.2A                                            |
+--  |    Included Tar call to unzip/decompress the gz archive        |
+--  |    pulled from the wget command to git. Output file goes       |
+--  |    into the dir /home/OEScritping/OEScripting-main             |
 --  +----------------------------------------------------------------+
 
 -- #region Configuration
@@ -27,3 +32,10 @@ local OutputZip = DownloadDir.."OCScripting-"..RepoBranch..".tar.gz"
 -- Download the repo now.
 require("/bin/wget")
 wget("-f".." "..RepoURL.." "..OutputZip)
+print ("1) REPO CLONED OK!")
+
+-- Decompress tar.gz
+require("/bin/tar")
+tar(OutputZip)
+print ("2) REPO WAS DECOMPRESSED OK!")
+print ("   REPO LOCATION: "..DownloadDir.."OCScripting-"..RepoBranch..)
